@@ -3,6 +3,7 @@ import datetime
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def hello():
     return jsonify({
@@ -11,9 +12,11 @@ def hello():
         'status': 'ok'
     })
 
+
 @app.route('/health')
 def health():
     return jsonify({'status': 'healthy'})
+
 
 @app.route('/greet/<name>')
 def greet(name):
@@ -22,17 +25,18 @@ def greet(name):
         'timestamp': datetime.datetime.now().isoformat()
     })
 
+
 @app.route('/api/v1/calculate', methods=['POST'])
 def calculate():
     data = request.get_json()
-    
+
     if not data or 'operation' not in data or 'a' not in data or 'b' not in data:
         return jsonify({'error': 'Missing parameters'}), 400
-    
+
     operation = data['operation']
     a = float(data['a'])
     b = float(data['b'])
-    
+
     if operation == 'add':
         result = a + b
     elif operation == 'subtract':
@@ -45,13 +49,14 @@ def calculate():
         result = a / b
     else:
         return jsonify({'error': 'Invalid operation'}), 400
-    
+
     return jsonify({
         'operation': operation,
         'a': a,
         'b': b,
         'result': result
     })
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
