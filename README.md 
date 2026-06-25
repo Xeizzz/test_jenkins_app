@@ -1,0 +1,16 @@
+# Test Jenkins App
+
+Простое Flask приложение для тестирования Jenkins CI/CD.
+
+## Функционал
+
+- ✅ Приветственный эндпоинт `/`
+- ✅ Проверка здоровья `/health`
+- ✅ Персональное приветствие `/greet/<name>`
+- ✅ Калькулятор с REST API `/api/v1/calculate`
+
+## Установка
+
+```bash
+pip install -r requirements.txt
+python app.py
